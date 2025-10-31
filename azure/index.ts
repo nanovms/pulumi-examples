@@ -80,4 +80,60 @@ const virtualMachine = new azure_native.compute.VirtualMachine("vm", {
         adminUsername: "pulumiadmin",
         adminPassword: "some-random-pass-that-is-not-used",
     },
+}
+
+// if you wish to create a scale set instead uncomment the following and comment out the vm block above
+/*
+const virtualMachineScaleSet = new azure_native.compute.VirtualMachineScaleSet("virtualMachineScaleSet", {
+    location: location,
+    overprovision: true,
+    resourceGroupName: resourceGroup,
+    sku: {
+        capacity: 2,
+        name: "Standard_B1S",
+        tier: "Standard",
+    },
+    upgradePolicy: {
+        mode: azure_native.compute.UpgradeMode.Manual,
+    },
+    virtualMachineProfile: {
+        diagnosticsProfile: {
+            bootDiagnostics: {
+                enabled: true,
+                storageUri: "http://" + bucket + ".blob.core.windows.net",
+            },
+        },
+        networkProfile: {
+            networkInterfaceConfigurations: [{
+                enableIPForwarding: true,
+                ipConfigurations: [{
+                    name: "ipconfig1",
+                    subnet: {
+                        id: subnet.id,
+                    },
+                }],
+                name: "test",
+                primary: true,
+            }],
+        },
+        osProfile: {
+            computerNamePrefix: "myvm",
+            adminUsername: "pulumiadmin",
+            adminPassword: "some-random-pass-that-is-not-used",
+        },
+        storageProfile: {
+          imageReference: {
+            id: "/subscriptions/" + subId + "/resourceGroups/" + resourceGroup + "/providers/Microsoft.Compute/galleries/" + galleryName + "/images/" + prefix,
+          },
+          osDisk: {
+                caching: azure_native.compute.CachingTypes.ReadWrite,
+                createOption: azure_native.compute.DiskCreateOptionTypes.FromImage,
+                managedDisk: {
+                    storageAccountType: azure_native.compute.StorageAccountTypes.Premium_LRS,
+                },
+            },
+        },
+    },
+    vmScaleSetName: "myss",
 });
+*/
