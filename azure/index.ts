@@ -120,7 +120,7 @@ const virtualMachineScaleSet = new azure_native.compute.VirtualMachineScaleSet("
         osProfile: {
             computerNamePrefix: "myvm",
             adminUsername: "pulumiadmin",
-            adminPassword: "some-random-pass-that-is-not-used",
+            adminPassword: "SOme-random-pass-that-is-not-used",
         },
         storageProfile: {
           imageReference: {
