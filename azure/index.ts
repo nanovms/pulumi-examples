@@ -80,7 +80,7 @@ const virtualMachine = new azure_native.compute.VirtualMachine("vm", {
         adminUsername: "pulumiadmin",
         adminPassword: "some-random-pass-that-is-not-used",
     },
-}
+});
 
 // if you wish to create a scale set instead uncomment the following and comment out the vm block above
 /*
