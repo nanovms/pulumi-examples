@@ -32,6 +32,7 @@ const subnet = new azure_native.network.Subnet("vm-subnet", {
 
 // Create a Network Interface
 const networkInterface = new azure_native.network.NetworkInterface("vm-nic", {
+    networkInterfaceName: "vm-nic",
     location: location,
     resourceGroupName: resourceGroup,
     ipConfigurations: [{
@@ -55,7 +56,7 @@ const virtualMachine = new azure_native.compute.VirtualMachine("vm", {
     },
     networkProfile: {
         networkInterfaces: [{
-            id: "/subscriptions/" + subId + "/resourceGroups/" + resourceGroup + "/providers/Microsoft.Network/networkInterfaces/" + prefix + "-nic",
+            id: "/subscriptions/" + subId + "/resourceGroups/" + resourceGroup + "/providers/Microsoft.Network/networkInterfaces/" + "vm-nic",
             primary: true,
         }],
     },
@@ -78,7 +79,7 @@ const virtualMachine = new azure_native.compute.VirtualMachine("vm", {
     osProfile: {
         computerName: "myvm",
         adminUsername: "pulumiadmin",
-        adminPassword: "some-random-pass-that-is-not-used",
+        adminPassword: "SOme-random-pass-that-is-not-used",
     },
 });
 
